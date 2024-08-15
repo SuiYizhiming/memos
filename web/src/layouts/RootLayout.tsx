@@ -10,8 +10,10 @@ import useResponsiveWidth from "@/hooks/useResponsiveWidth";
 import Loading from "@/pages/Loading";
 import { Routes } from "@/router";
 import { useMemoFilterStore } from "@/store/v1";
+import { useTranslate } from "@/utils/i18n";
 
 const RootLayout = () => {
+  const t = useTranslate();
   const location = useLocation();
   const { sm } = useResponsiveWidth();
   const currentUser = useCurrentUser();
@@ -37,7 +39,7 @@ const RootLayout = () => {
   return !initialized ? (
     <Loading />
   ) : (
-    <div className="w-full min-h-full">
+    <div className="w-full min-h-full flex flex-col justify-between">
       <div className={clsx("w-full transition-all mx-auto flex flex-row justify-center items-start", collapsed ? "sm:pl-16" : "sm:pl-56")}>
         {sm && (
           <div
@@ -54,10 +56,10 @@ const RootLayout = () => {
               >
                 {!collapsed ? (
                   <Button variant="plain" color="neutral" startDecorator={<Icon.ChevronLeft className="w-5 h-auto opacity-70" />}>
-                    Collapse
+                    {t("common.collapse")}
                   </Button>
                 ) : (
-                  <Tooltip title="Expand" placement="right" arrow>
+                  <Tooltip title={t("common.expand")} placement="right" arrow>
                     <IconButton>
                       <Icon.ChevronRight className="w-5 h-auto opacity-70" />
                     </IconButton>
@@ -77,6 +79,7 @@ const RootLayout = () => {
         <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">桂ICP备2024039868号</a>
       </footer>
     </div>
+    
   );
 };
 
