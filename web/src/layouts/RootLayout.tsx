@@ -73,6 +73,9 @@ const RootLayout = () => {
           </Suspense>
         </main>
       </div>
+      <footer className="w-full text-center py-4">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">桂ICP备2024039868号</a>
+      </footer>
     </div>
   );
 };
